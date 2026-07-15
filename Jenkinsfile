@@ -49,6 +49,19 @@ pipeline {
             }
         }
 
+        stage('DataOps: Seed Database') {
+
+            steps {
+
+                echo "Running DataOps Seeding & Validation..."
+
+                dir('backend') {
+                    bat 'npm install'
+                    bat 'npm run dataops:seed'
+                }
+            }
+        }
+
         stage('Test Backend') {
 
             steps {

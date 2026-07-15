@@ -4,11 +4,11 @@ pipeline {
 
     environment {
 
-        DOCKER_USERNAME = "abhinandany"
+        DOCKER_USERNAME = "sabhinandany"
 
-        BACKEND_IMAGE = "abhinandany/code2place-backend"
+        BACKEND_IMAGE = "sabhinandany/code2place-backend"
 
-        FRONTEND_IMAGE = "abhinandany/code2place-frontend"
+        FRONTEND_IMAGE = "sabhinandany/code2place-frontend"
 
         RESOURCE_GROUP = "abhi_rg"
 

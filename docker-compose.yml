@@ -1,0 +1,19 @@
+services:
+
+  backend:
+    platform: linux/amd64
+    build: ./backend
+    container_name: mern_backend
+    ports:
+      - "5000:5000"
+    env_file:
+      - ./backend/.env
+
+  frontend:
+    platform: linux/amd64
+    build: ./web
+    container_name: mern_frontend
+    ports:
+      - "3000:80"
+    depends_on:
+      - backend

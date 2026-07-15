@@ -184,8 +184,11 @@
 //     }
 // }
 
+pipeline {
+    agent any
 
-stage('Docker Login') {
+    stages {
+        stage('Docker Login') {
     steps {
         withCredentials([
             usernamePassword(
@@ -199,5 +202,7 @@ stage('Docker Login') {
             powershell -Command "Write-Host PasswordLength=$($env:DOCKER_PASS.Length)"
             '''
         }
+    }
+}
     }
 }

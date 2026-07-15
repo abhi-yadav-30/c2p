@@ -188,23 +188,23 @@ pipeline {
     agent any
 
     stages {
-        stage('Test Docker Login') {
-            steps {
-                withCredentials([
-                    usernamePassword(
-                        credentialsId: 'dockerhub',
-                        usernameVariable: 'DOCKER_USER',
-                        passwordVariable: 'DOCKER_PASS'
-                    )
-                ]) {
-                    bat '''
-                    echo Username=%DOCKER_USER%
-                    powershell -Command "Write-Host PasswordLength=$($env:DOCKER_PASS.Length)"
-                    docker logout
-                    echo %DOCKER_PASS% | docker login -u %DOCKER_USER% --password-stdin
-                    '''
-                }
-            }
+        stage('Check Credential') {
+    steps {
+        withCredentials([
+            usernamePassword(
+                credentialsId: 'dockerhub',
+                usernameVariable: 'DOCKER_USER',
+                passwordVariable: 'DOCKER_PASS'
+            )
+        ]) {
+
+            bat '''
+            powershell -Command "Write-Host USER=$env:DOCKER_USER"
+            powershell -Command "Write-Host LENGTH=$($env:DOCKER_PASS.Length)"
+            powershell -Command "Write-Host FIRST=$($env:DOCKER_PASS.Substring(0,5))"
+            '''
         }
+    }
+}
     }
 }

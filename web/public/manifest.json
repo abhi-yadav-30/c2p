@@ -1,0 +1,24 @@
+{
+  "name": "Code2Place",
+  "short_name": "Code2Place",
+  "description": "Code2Place is your ultimate placement preparation partner. It’s an educational platform designed to help students and developers sharpen their coding skills, prepare for interviews, and track their progress efficiently. The platform combines coding practice, learning resources, and performance tracking in a single intuitive interface, tailored for placement success.",
+  "start_url": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#2a2a2a",
+  "theme_color": "#1e1e1e",
+  "icons": [
+    {
+      "src": "/C2P1.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "/C2P.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ]
+}

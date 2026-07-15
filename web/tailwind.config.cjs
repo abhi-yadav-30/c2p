@@ -1,0 +1,22 @@
+/** @type {import('tailwindcss').Config} */
+module.exports = {
+  content: [
+    "./index.html",
+    "./src/**/*.{js,ts,jsx,tsx}",
+  ],
+
+  theme: {
+    extend: {
+      screens: {
+        "h-sm": { raw: "(max-height: 600px)" },
+        "h-md": { raw: "(max-height: 800px)" },
+        "h-lg": { raw: "(min-height: 801px)" },
+      },
+    },
+  },plugins: [
+    require('daisyui')
+  ],
+  daisyui: {
+    themes: ["emerald"], 
+  },
+};

@@ -188,7 +188,7 @@ pipeline {
     agent any
 
     stages {
-        stage('Check Credential') {
+        stage('Docker Login') {
     steps {
         withCredentials([
             usernamePassword(
@@ -198,10 +198,12 @@ pipeline {
             )
         ]) {
 
-            bat '''
-            powershell -Command "Write-Host USER=$env:DOCKER_USER"
-            powershell -Command "Write-Host LENGTH=$($env:DOCKER_PASS.Length)"
-            powershell -Command "Write-Host FIRST=$($env:DOCKER_PASS.Substring(0,5))"
+            powershell '''
+            docker logout
+
+            $env:DOCKER_PASS | docker login `
+                -u $env:DOCKER_USER `
+                --password-stdin
             '''
         }
     }

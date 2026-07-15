@@ -184,29 +184,57 @@
 //     }
 // }
 
+// pipeline {
+//     agent any
+
+//     stages {
+//         stage('Check Credential') {
+//     steps {
+//         withCredentials([
+//             usernamePassword(
+//                 credentialsId: 'dockerhub',
+//                 usernameVariable: 'DOCKER_USER',
+//                 passwordVariable: 'DOCKER_PASS'
+//             )
+//         ]) {
+
+//             bat '''
+//             powershell -Command "Write-Host USER=$env:DOCKER_USER"
+//             powershell -Command "Write-Host LENGTH=$($env:DOCKER_PASS.Length)"
+//             powershell -Command "Write-Host FIRST=$($env:DOCKER_PASS.Substring(0,5))"
+//             '''
+//         }
+//     }
+// }
+//     }
+// }
+
+
 pipeline {
     agent any
 
     stages {
-        stage('Docker Login') {
-    steps {
-        withCredentials([
-            usernamePassword(
-                credentialsId: 'dockerhub',
-                usernameVariable: 'DOCKER_USER',
-                passwordVariable: 'DOCKER_PASS'
-            )
-        ]) {
+        stage('Inspect PAT') {
+            steps {
+                withCredentials([
+                    usernamePassword(
+                        credentialsId: 'dockerhub',
+                        usernameVariable: 'DOCKER_USER',
+                        passwordVariable: 'DOCKER_PASS'
+                    )
+                ]) {
+                    powershell '''
+                        [System.IO.File]::WriteAllText("pat.txt", $env:DOCKER_PASS)
 
-            powershell '''
-            docker logout
+                        Write-Host "Length:"
+                        (Get-Content pat.txt -Raw).Length
 
-            $env:DOCKER_PASS | docker login `
-                -u $env:DOCKER_USER `
-                --password-stdin
-            '''
+                        Write-Host "Last Character ASCII:"
+                        $text = Get-Content pat.txt -Raw
+                        [int][char]$text[$text.Length-1]
+                    '''
+                }
+            }
         }
-    }
-}
     }
 }

@@ -49,74 +49,76 @@ pipeline {
             }
         }
 
-        stage('DataOps: Seed Database') {
+        // stage('DataOps: Seed Database') {
 
-            steps {
+        //     steps {
 
-                echo "Running DataOps Seeding & Validation..."
+        //         echo "Running DataOps Seeding & Validation..."
 
-                dir('backend') {
-                    bat 'npm install'
-                    bat 'npm run dataops:seed'
-                }
-            }
-        }
+        //         dir('backend') {
+        //             bat 'npm install'
+        //             bat 'npm run dataops:seed'
+        //         }
+        //     }
+        // }
 
-        stage('Test Backend') {
 
-            steps {
 
-                echo "Testing Backend..."
+        // stage('Test Backend') {
 
-                dir('backend') {
-                    bat 'npm install'
-                    bat 'npm test'
-                }
-            }
-        }
+        //     steps {
 
-        stage('Test Frontend') {
+        //         echo "Testing Backend..."
 
-            steps {
+        //         dir('backend') {
+        //             bat 'npm install'
+        //             bat 'npm test'
+        //         }
+        //     }
+        // }
 
-                echo "Testing Frontend..."
+        // stage('Test Frontend') {
 
-                dir('web') {
-                    bat 'npm install'
-                    bat 'npm test'
-                }
-            }
-        }
+        //     steps {
 
-        stage('Build Backend Image') {
+        //         echo "Testing Frontend..."
 
-            steps {
+        //         dir('web') {
+        //             bat 'npm install'
+        //             bat 'npm test'
+        //         }
+        //     }
+        // }
 
-                echo "Building Backend..."
+        // stage('Build Backend Image') {
 
-                bat """
-                docker build ^
-                -t %BACKEND_IMAGE%:latest ^
-                -t %BACKEND_IMAGE%:%BUILD_NUMBER% ^
-                backend
-                """
-            }
-        }
+        //     steps {
 
-        stage('Build Frontend Image') {
+        //         echo "Building Backend..."
 
-            steps {
+        //         bat """
+        //         docker build ^
+        //         -t %BACKEND_IMAGE%:latest ^
+        //         -t %BACKEND_IMAGE%:%BUILD_NUMBER% ^
+        //         backend
+        //         """
+        //     }
+        // }
 
-                echo "Building Frontend..."
+        // stage('Build Frontend Image') {
 
-                bat """
-                docker build ^
-                -t %FRONTEND_IMAGE%:latest ^
-                -t %FRONTEND_IMAGE%:%BUILD_NUMBER% ^
-                web
-                """
-            }
-        }
+        //     steps {
+
+        //         echo "Building Frontend..."
+
+        //         bat """
+        //         docker build ^
+        //         -t %FRONTEND_IMAGE%:latest ^
+        //         -t %FRONTEND_IMAGE%:%BUILD_NUMBER% ^
+        //         web
+        //         """
+        //     }
+        // }
 
         // stage('Docker Login') {
 

@@ -90,35 +90,35 @@ pipeline {
             }
         }
 
-        // stage('Build Backend Image') {
+        stage('Build Backend Image') {
 
-        //     steps {
+            steps {
 
-        //         echo "Building Backend..."
+                echo "Building Backend..."
 
-        //         bat """
-        //         docker build ^
-        //         -t %BACKEND_IMAGE%:latest ^
-        //         -t %BACKEND_IMAGE%:%BUILD_NUMBER% ^
-        //         backend
-        //         """
-        //     }
-        // }
+                bat """
+                docker build ^
+                -t %BACKEND_IMAGE%:latest ^
+                -t %BACKEND_IMAGE%:%BUILD_NUMBER% ^
+                backend
+                """
+            }
+        }
 
-        // stage('Build Frontend Image') {
+        stage('Build Frontend Image') {
 
-        //     steps {
+            steps {
 
-        //         echo "Building Frontend..."
+                echo "Building Frontend..."
 
-        //         bat """
-        //         docker build ^
-        //         -t %FRONTEND_IMAGE%:latest ^
-        //         -t %FRONTEND_IMAGE%:%BUILD_NUMBER% ^
-        //         web
-        //         """
-        //     }
-        // }
+                bat """
+                docker build ^
+                -t %FRONTEND_IMAGE%:latest ^
+                -t %FRONTEND_IMAGE%:%BUILD_NUMBER% ^
+                web
+                """
+            }
+        }
 
         // stage('Docker Login') {
 

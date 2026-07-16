@@ -64,31 +64,31 @@ pipeline {
 
 
 
-        // stage('Test Backend') {
+        stage('Test Backend') {
 
-        //     steps {
+            steps {
 
-        //         echo "Testing Backend..."
+                echo "Testing Backend..."
 
-        //         dir('backend') {
-        //             bat 'npm install'
-        //             bat 'npm test'
-        //         }
-        //     }
-        // }
+                dir('backend') {
+                    bat 'npm install'
+                    bat 'npm test'
+                }
+            }
+        }
 
-        // stage('Test Frontend') {
+        stage('Test Frontend') {
 
-        //     steps {
+            steps {
 
-        //         echo "Testing Frontend..."
+                echo "Testing Frontend..."
 
-        //         dir('web') {
-        //             bat 'npm install'
-        //             bat 'npm test'
-        //         }
-        //     }
-        // }
+                dir('web') {
+                    bat 'npm install'
+                    bat 'npm test'
+                }
+            }
+        }
 
         // stage('Build Backend Image') {
 
